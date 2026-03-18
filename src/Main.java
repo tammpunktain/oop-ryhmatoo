@@ -15,10 +15,11 @@ public class Main {
                 "Vali tegevus", "Sisestus",
                 JOptionPane.INFORMATION_MESSAGE, null,
                 variandid, variandid[0]);
-        System.out.println("Labisoit enne soitu" + esimene.getLabiSoit());;
+        System.out.println("Labisoit enne sõitu on: " + esimene.getLabiSoit());;
         if (valitud == "Sõida"){
-            esimene.soida(10000);
+            int soidetud = Integer.parseInt(JOptionPane.showInputDialog("Kui palju sõita soovid?"));
+            esimene.soida(soidetud);
         } else System.out.println("vale valik");
-        System.out.println("Labisoit parast soitu" + esimene.getLabiSoit());
+        System.out.println("Labisoit parast sõitu on: " + esimene.getLabiSoit());
     }
 }
