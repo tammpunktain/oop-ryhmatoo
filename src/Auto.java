@@ -11,7 +11,9 @@ public class Auto {
         this.labiSoit = labiSoit;
     }
 
-    public
+    public void soida(int km){
+        labiSoit+=km;
+    }
 
 
 
