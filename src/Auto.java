@@ -15,9 +15,9 @@ public class Auto {
         this.kytusekulu = kytusekulu;
     }
 
-    public void soida(int km){
-        labiSoit+=km;
-        kytust -= kytusekulu * (km/100.0);
+    public void soida(int km) {
+        labiSoit += km;
+        kytust -= kytusekulu * (km / 100.0);
     }
 
 
@@ -28,6 +28,8 @@ public class Auto {
                 ", mudel='" + mudel + '\'' +
                 ", aasta=" + aasta +
                 ", labiSoit=" + labiSoit +
+                ", kytust=" + kytust +
+                ", kytusekulu=" + kytusekulu +
                 '}';
     }
 
@@ -35,9 +37,6 @@ public class Auto {
         this.kytust = kytust;
     }
 
-    public void setKytusekulu(double kytusekulu) {
-        this.kytusekulu = kytusekulu;
-    }
 
     public double getKytust() {
         return kytust;
@@ -55,27 +54,8 @@ public class Auto {
         return mudel;
     }
 
-    public int getAasta() {
-        return aasta;
-    }
-
     public int getLabiSoit() {
         return labiSoit;
     }
 
-    public void setMark(String mark) {
-        this.mark = mark;
-    }
-
-    public void setMudel(String mudel) {
-        this.mudel = mudel;
-    }
-
-    public void setAasta(int aasta) {
-        this.aasta = aasta;
-    }
-
-    public void setLabiSoit(int labiSoit) {
-        this.labiSoit = labiSoit;
-    }
 }

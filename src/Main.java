@@ -2,30 +2,59 @@ import javax.swing.*;
 
 public class Main {
     public static void main(String[] args){
-        String mark = JOptionPane.showInputDialog("Sisesta auto mark: ");
-        String mudel = JOptionPane.showInputDialog("Sisesta auto mudel: ");
-        int aasta = Integer.parseInt(JOptionPane.showInputDialog("Sisesta auto väljalaskeaasta: "));
-        int ls = Integer.parseInt(JOptionPane.showInputDialog("Sisesta oma auto läbisõit: "));
-        double kytust = Double.parseDouble(JOptionPane.showInputDialog("Sisesta oma kütusekogus liitrites: "));
-        double kytusekulu = Double.parseDouble(JOptionPane.showInputDialog("Sisesta oma kytusekulu 100 km kohta liitrites: "));
+        //Garaazi loomine
+        String nimi = JOptionPane.showInputDialog("Sisesta oma garaazi nimi: ");
+        Garaaž garaaz = new Garaaž(nimi);
 
-        Auto esimene = new Auto(mark, mudel, aasta, ls, kytust, kytusekulu);
 
-        System.out.println("Labisoit enne sõitu on: " + esimene.getLabiSoit());
-        System.out.println("kütusekogus enne sõitu on: " + esimene.getKytust());
+        while (true) {
 
-        Object[] variandid = new String[]{"Sõida", "Tangi", "remondi"};
+            //Uldvalikud
+            Object[] variandid = new String[]{"Lisa garaaži auto","Kuva garaažis olevad autod", "Vali garaažist auto"};
+            Object valitud = JOptionPane.showInputDialog(null,
+                    "Vali tegevus", "Sisestus",
+                    JOptionPane.INFORMATION_MESSAGE, null,
+                    variandid, variandid[0]);
+
+            //tegevused
+            if (valitud.equals("Lisa garaaži auto")){
+                String mark = JOptionPane.showInputDialog("Sisesta auto mark: ");
+                String mudel = JOptionPane.showInputDialog("Sisesta auto mudel: ");
+                int aasta = Integer.parseInt(JOptionPane.showInputDialog("Sisesta auto väljalaskeaasta: "));
+                int ls = Integer.parseInt(JOptionPane.showInputDialog("Sisesta oma auto läbisõit: "));
+                double kytust = Double.parseDouble(JOptionPane.showInputDialog("Sisesta, kui palju on sul kütust paagis liitrites: "));
+                double kytusekulu = Double.parseDouble(JOptionPane.showInputDialog("Sisesta oma kytusekulu 100 km kohta liitrites: "));
+                Auto auto = new Auto(mark, mudel, aasta, ls, kytust, kytusekulu);
+                garaaz.lisaAuto(auto);
+            } else if (valitud.equals("Vali garaažist auto")) {
+                int indeks = Integer.parseInt(JOptionPane.showInputDialog("Sisesta auto järjekorranumber"));
+                Auto valitudAuto = garaaz.valiAuto(indeks);
+                tegevusedAutoga(valitudAuto);
+            } else {
+                garaaz.kuvaNimekiri();
+            }
+
+        }
+    }
+
+
+
+    public static void tegevusedAutoga(Auto auto){
+        Object[] variandid = new String[]{"Sõida", "Tangi", "Remondi", "info"};
         Object valitud = JOptionPane.showInputDialog(null,
                 "Vali tegevus", "Sisestus",
                 JOptionPane.INFORMATION_MESSAGE, null,
                 variandid, variandid[0]);
 
-        if (valitud == "Sõida"){
+        if (valitud.equals("Sõida")) {
             int soidetud = Integer.parseInt(JOptionPane.showInputDialog("Kui palju sõita soovid?"));
-            esimene.soida(soidetud);
-        } else System.out.println("vale valik");
+            auto.soida(soidetud);
+        }/* else if (valitud.equals("Tangi")){
 
-        System.out.println("Labisoit parast sõitu on: " + esimene.getLabiSoit());
-        System.out.println("Kütusekogus parast sõitu on: " + esimene.getKytust());
+        } else if (valitud.equals("Remondi")) {
+
+        }*/
+        else System.out.println(auto);;
+
     }
 }
