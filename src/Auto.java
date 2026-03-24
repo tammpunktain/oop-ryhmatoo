@@ -5,6 +5,7 @@ public class Auto {
     private int labiSoit;
     private double kytust; //liitrites
     private double kytusekulu; // L/100km
+    private boolean onKatki = false;
 
     public Auto(String mark, String mudel, int aasta, int labiSoit, double kytust, double kytusekulu) {
         this.mark = mark;
@@ -15,11 +16,41 @@ public class Auto {
         this.kytusekulu = kytusekulu;
     }
 
-    public void soida(int km) {
+    public boolean soida(int km) {
+        if(onKatki){
+            System.out.println("Auto on katki, ei saa sõita");
+            return false;
+        }
+        double kulub=kytusekulu * (km / 100.0);
+        if(kulub>kytust){
+            System.out.println("Pole piisavalt kütust");
+            return false;
+        }
         labiSoit += km;
-        kytust -= kytusekulu * (km / 100.0);
+        kytust-=kulub;
+        double risk=(km/100.0*0.15);
+        if(Math.random()<risk){
+            onKatki=true;
+            System.out.println("Auto läks katki");
+        }
+        return true;
     }
-
+    public void tangi(double liitrid){
+        if(liitrid<=0){
+            System.out.println("Kogus peab olema positiivne arv");
+            return;
+        }
+        kytust+=liitrid;
+        System.out.println("Tangitud "+liitrid+"L.");
+    }
+    public void remondi(){
+        if(!onKatki){
+            System.out.println("Auto on juba terve.");
+            return;
+        }
+        onKatki=false;
+        System.out.println("Auto on parandatud.");
+    }
 
     @Override
     public String toString() {
@@ -37,6 +68,9 @@ public class Auto {
         this.kytust = kytust;
     }
 
+    public boolean isOnKatki(){
+        return onKatki;
+    }
 
     public double getKytust() {
         return kytust;

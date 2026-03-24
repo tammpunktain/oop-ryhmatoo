@@ -15,6 +15,7 @@ public class Main {
                     "Vali tegevus", "Sisestus",
                     JOptionPane.INFORMATION_MESSAGE, null,
                     variandid, variandid[0]);
+            if (valitud == null) break;
 
             //tegevused
             if (valitud.equals("Lisa garaaži auto")){
@@ -40,21 +41,32 @@ public class Main {
 
 
     public static void tegevusedAutoga(Auto auto){
-        Object[] variandid = new String[]{"Sõida", "Tangi", "Remondi", "info"};
-        Object valitud = JOptionPane.showInputDialog(null,
-                "Vali tegevus", "Sisestus",
-                JOptionPane.INFORMATION_MESSAGE, null,
-                variandid, variandid[0]);
+        if(auto==null) return;
+        Object[] variandid = new String[]{"Sõida", "Tangi", "Remondi", "Info","Tagasi"};
 
-        if (valitud.equals("Sõida")) {
-            int soidetud = Integer.parseInt(JOptionPane.showInputDialog("Kui palju sõita soovid?"));
-            auto.soida(soidetud);
-        }/* else if (valitud.equals("Tangi")){
+        while(true){
+            String olek=auto.isOnKatki() ? "KATKI": "Korras";
+            Object valitud = JOptionPane.showInputDialog(null,
+                    "Mark: "+auto.getMark()+
+                            "\nMudel "+auto.getMudel()+
+                            "\nOlek: " + olek +
+                            "\nLäbisõit: " + auto.getLabiSoit() + " km" + "" +
+                            "\nKütust: " + String.format("%.2f", auto.getKytust()) + " L",
+                    "Auto tegevused",
+                    JOptionPane.INFORMATION_MESSAGE, null,
+                    variandid, variandid[0]);
 
-        } else if (valitud.equals("Remondi")) {
+            if (valitud == null || "Tagasi".equals(valitud)) return;
 
-        }*/
-        else System.out.println(auto);;
-
+            if (valitud.equals("Sõida")) {
+                int soidetud = Integer.parseInt(JOptionPane.showInputDialog("Kui palju sõita soovid?"));
+                auto.soida(soidetud);
+            }else if (valitud.equals("Tangi")){
+                double liitrid = Double.parseDouble(JOptionPane.showInputDialog("Mitu liitrit?"));
+                auto.tangi(liitrid);
+            } else if (valitud.equals("Remondi")) {
+                auto.remondi();
+        }
     }
+}
 }

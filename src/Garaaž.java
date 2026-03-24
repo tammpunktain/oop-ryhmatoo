@@ -32,23 +32,6 @@ public class Garaaž {
         return null;
     }
 
-    public void tangi(Auto auto, double liitrid) {
-        auto.setKytust(auto.getKytust() + liitrid);
-        System.out.println("Tankitud " + liitrid + "L. Uus kütusekogus: " + auto.getKytust() + "L");
-    }
-
-    public void soitmine(Auto auto, int km) {
-        double vajaminevKytus = auto.getKytusekulu() * (km / 100.0);
-        if (auto.getKytust() < vajaminevKytus) {
-            System.out.println("Pole piisavalt kütust! Vajad " + vajaminevKytus + "L, aga autos on " + auto.getKytust() + "L");
-            return;
-        }
-        auto.soida(km);
-        System.out.println("Sõideti " + km + "km.");
-        System.out.println("Uus läbisõit: " + auto.getLabiSoit() + "km");
-        System.out.println("Järelejäänud kütus: " + auto.getKytust() + "L");
-    }
-
     public int getAutodeArv() {
         return autod.size();
     }
