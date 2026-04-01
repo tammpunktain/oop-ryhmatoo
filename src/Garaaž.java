@@ -5,7 +5,7 @@ public class Garaaž {
     private String nimi;
 
     public Garaaž(String nimi) {
-        this.nimi = nimi;
+        this.nimi = "GARAAŽ";
         this.autod = new ArrayList<>();
     }
 

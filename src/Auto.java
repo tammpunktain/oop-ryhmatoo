@@ -54,14 +54,11 @@ public class Auto {
 
     @Override
     public String toString() {
-        return "Auto{" +
-                "mark='" + mark + '\'' +
-                ", mudel='" + mudel + '\'' +
-                ", aasta=" + aasta +
-                ", labiSoit=" + labiSoit +
-                ", kytust=" + kytust +
-                ", kytusekulu=" + kytusekulu +
-                '}';
+        return mark+", mudel= '" + mudel +
+                "', aasta=" + aasta +
+                ", labisoit=" + labiSoit +" km"+
+                ", kytust paagis=" + kytust +" L"+
+                ", kytusekulu= " + kytusekulu +" L/100km";
     }
 
     public void setKytust(double kytust) {

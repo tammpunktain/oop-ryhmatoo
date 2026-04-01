@@ -42,10 +42,10 @@ public class Main {
 
     public static void tegevusedAutoga(Auto auto){
         if(auto==null) return;
-        Object[] variandid = new String[]{"Sõida", "Tangi", "Remondi", "Info","Tagasi"};
+        Object[] variandid = new String[]{"Sõida", "Tangi", "Remondi","Tagasi"};
 
         while(true){
-            String olek=auto.isOnKatki() ? "KATKI": "Korras";
+            String olek=auto.isOnKatki() ? "KATKI!!!": "Korras";//Kas autoga saab sõita, või vajab parandust
             Object valitud = JOptionPane.showInputDialog(null,
                     "Mark: "+auto.getMark()+
                             "\nMudel "+auto.getMudel()+
