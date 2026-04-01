@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Garaaž {
@@ -5,31 +6,45 @@ public class Garaaž {
     private String nimi;
 
     public Garaaž(String nimi) {
-        this.nimi = "GARAAŽ";
+        if(nimi==null || nimi.trim().isEmpty()){
+            this.nimi = "GARAAŽ";
+        }else this.nimi=nimi;
         this.autod = new ArrayList<>();
     }
 
     public void lisaAuto(Auto auto) {
         autod.add(auto);
-        System.out.println("Auto " + auto.getMark() + " " + auto.getMudel() + " lisati garaaži: "+nimi+" .");
+        JOptionPane.showMessageDialog(null,"Auto " + auto.getMark() + " " + auto.getMudel() + " lisati garaaži: "+nimi);
     }
 
     public void kuvaNimekiri() {
         if (autod.isEmpty()) {
-            System.out.println("Garaaz on tühi.");
+            JOptionPane.showMessageDialog(null,"Garaaz on tühi.");
             return;
         }
+        StringBuilder sb = new StringBuilder();
         for (int i = 0; i < autod.size(); i++) {
-            System.out.println((i + 1) + ". " + autod.get(i));
+            sb.append(i + 1).append(". ").append(autod.get(i)).append("\n");
         }
+        JOptionPane.showMessageDialog(null, sb.toString());
     }
 
     public Auto valiAuto(int indeks) {
         if (indeks >= 1 && indeks <= autod.size()) {
             return autod.get(indeks - 1);
         }
-        System.out.println("Vale indeks");
+        JOptionPane.showMessageDialog(null,"Vale indeks");
         return null;
+    }
+
+    public void eemaldaAuto(int indeks) {
+        if (indeks >= 1 && indeks <= autod.size()) {
+            Auto eemaldatud = autod.remove(indeks - 1);
+            JOptionPane.showMessageDialog(null,
+                    "Eemaldati auto: " + eemaldatud.getMark() + " " + eemaldatud.getMudel());
+        } else {
+            JOptionPane.showMessageDialog(null, "Vale indeks!");
+        }
     }
 
     public int getAutodeArv() {

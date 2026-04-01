@@ -1,3 +1,5 @@
+import javax.swing.*;
+
 public class Auto {
     private String mark;
     private String mudel;
@@ -17,55 +19,61 @@ public class Auto {
     }
 
     public boolean soida(int km) {
-        if(onKatki){
-            System.out.println("Auto on katki, ei saa sõita");
+        if (onKatki) {
+            JOptionPane.showMessageDialog(null, "Auto on katki, ei saa sõita");
             return false;
         }
-        double kulub=kytusekulu * (km / 100.0);
-        if(kulub>kytust){
-            System.out.println("Pole piisavalt kütust");
+        double kulub = kytusekulu * (km / 100.0);
+        if (kulub > kytust) {
+            JOptionPane.showMessageDialog(null, "Pole piisavalt kütust!");
             return false;
         }
         labiSoit += km;
-        kytust-=kulub;
-        double risk=(km/100.0*0.15);
-        if(Math.random()<risk){
-            onKatki=true;
-            System.out.println("Auto läks katki");
+        kytust -= kulub;
+        double risk = Math.min(0.5, km / 100.0 * 0.15);
+        if (Math.random() < risk) {
+            onKatki = true;
+            JOptionPane.showMessageDialog(null, "Auto läks katki!");
         }
         return true;
     }
-    public void tangi(double liitrid){
-        if(liitrid<=0){
-            System.out.println("Kogus peab olema positiivne arv");
+
+    public void tangi(double liitrid) {
+        if(onKatki){
+            JOptionPane.showMessageDialog(null,"Auto on katki, ei saa tankida");
             return;
         }
-        kytust+=liitrid;
-        System.out.println("Tangitud "+liitrid+"L.");
+        if (liitrid <= 0) {
+            JOptionPane.showMessageDialog(null,"Kogus peab olema positiivne arv");
+            return;
+        }
+        kytust += liitrid;
+        JOptionPane.showMessageDialog(null,"Tangitud " + liitrid + "L.");
     }
-    public void remondi(){
-        if(!onKatki){
-            System.out.println("Auto on juba terve.");
+
+    public void remondi() {
+        if (!onKatki) {
+            JOptionPane.showMessageDialog(null,"Auto on juba terve.");
             return;
         }
-        onKatki=false;
-        System.out.println("Auto on parandatud.");
+        onKatki = false;
+        JOptionPane.showMessageDialog(null,"Auto on parandatud.");
     }
 
     @Override
     public String toString() {
-        return mark+", mudel= '" + mudel +
-                "', aasta=" + aasta +
-                ", labisoit=" + labiSoit +" km"+
-                ", kytust paagis=" + kytust +" L"+
-                ", kytusekulu= " + kytusekulu +" L/100km";
+        return "Mark= " + mark + " mudel= " + mudel +
+                " aasta= " + aasta +
+                " läbisõit= " + labiSoit + " km" +
+                " kütust paagis= " + kytust + " L" +
+                " kütusekulu= " + kytusekulu + " L/100km";
     }
 
     public void setKytust(double kytust) {
         this.kytust = kytust;
     }
 
-    public boolean isOnKatki(){
+    public boolean isOnKatki() {
         return onKatki;
     }
 
