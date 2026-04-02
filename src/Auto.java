@@ -19,10 +19,10 @@ public class Auto {
     }
 
     public boolean soida(int km) {
-        if (onKatki) {
+        /*if (onKatki) {
             JOptionPane.showMessageDialog(null, "Auto on katki, ei saa sõita");
             return false;
-        }
+        }*/
         double kulub = kytusekulu * (km / 100.0);
         if (kulub > kytust) {
             JOptionPane.showMessageDialog(null, "Pole piisavalt kütust!");
@@ -39,10 +39,10 @@ public class Auto {
     }
 
     public void tangi(double liitrid) {
-        if(onKatki){
-            JOptionPane.showMessageDialog(null,"Auto on katki, ei saa tankida");
+        /*if(onKatki) {
+            JOptionPane.showMessageDialog(null, "Auto on katki, ei saa tankida");
             return;
-        }
+        }*/
         if (liitrid <= 0) {
             JOptionPane.showMessageDialog(null,"Kogus peab olema positiivne arv");
             return;
@@ -62,16 +62,14 @@ public class Auto {
 
     @Override
     public String toString() {
-        return "Mark= " + mark + " mudel= " + mudel +
-                " aasta= " + aasta +
-                " läbisõit= " + labiSoit + " km" +
-                " kütust paagis= " + kytust + " L" +
-                " kütusekulu= " + kytusekulu + " L/100km";
+        return "Mark: " + mark +
+                ", mudel: " + mudel +
+                ", aasta: " + aasta +
+                ", läbisõit: " + labiSoit + " km" +
+                ", kütust paagis: " + String.format("%.2f", kytust) + " L" +
+                ", kütusekulu: " + String.format("%.2f", kytusekulu) + " L/100 km";
     }
 
-    public void setKytust(double kytust) {
-        this.kytust = kytust;
-    }
 
     public boolean isOnKatki() {
         return onKatki;
@@ -96,5 +94,6 @@ public class Auto {
     public int getLabiSoit() {
         return labiSoit;
     }
+
 
 }
