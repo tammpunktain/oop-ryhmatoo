@@ -18,6 +18,12 @@ public class Auto {
         this.kytusekulu = kytusekulu;
     }
 
+
+    /**
+     * Simuleerib auto sõitmist
+     * @param km näitab mitu kilomeetrit auto peab sõitma
+     * @return näitab kas auto oli võimeline ilma vigadeta sõitma
+     */
     public boolean soida(int km) {
         /*if (onKatki) {
             JOptionPane.showMessageDialog(null, "Auto on katki, ei saa sõita");
@@ -38,6 +44,10 @@ public class Auto {
         return true;
     }
 
+    /**
+     * Tangib autot
+     * @param liitrid näitab mitu liitrit peab lisama auto kütusekogusele.
+     */
     public void tangi(double liitrid) {
         /*if(onKatki) {
             JOptionPane.showMessageDialog(null, "Auto on katki, ei saa tankida");
@@ -51,6 +61,9 @@ public class Auto {
         JOptionPane.showMessageDialog(null,"Tangitud " + liitrid + "L.");
     }
 
+    /**
+     * remondib auto
+     */
     public void remondi() {
         if (!onKatki) {
             JOptionPane.showMessageDialog(null,"Auto on juba terve.");
@@ -60,6 +73,10 @@ public class Auto {
         JOptionPane.showMessageDialog(null,"Auto on parandatud.");
     }
 
+    /**
+     * Auto andmed
+     * @return tagastab auto kõik auto andmed
+     */
     @Override
     public String toString() {
         return "Mark: " + mark +
@@ -70,7 +87,10 @@ public class Auto {
                 ", kütusekulu: " + String.format("%.2f", kytusekulu) + " L/100 km";
     }
 
-
+    /**
+     * Kas auto on katki
+     * @return tagastab onKatki väärtuse
+     */
     public boolean isOnKatki() {
         return onKatki;
     }

@@ -12,11 +12,18 @@ public class Garaaž {
         this.autod = new ArrayList<>();
     }
 
+    /**
+     * Lisab garaazi klassi Auto isendi
+     * @param auto on klassi Auto isend
+     */
     public void lisaAuto(Auto auto) {
         autod.add(auto);
         JOptionPane.showMessageDialog(null,"Auto " + auto.getMark() + " " + auto.getMudel() + " lisati garaaži: "+nimi);
     }
 
+    /**
+     * Kuvab autode nimekirja, mis on garaazi lisatud.
+     */
     public void kuvaNimekiri() {
         if (autod.isEmpty()) {
             JOptionPane.showMessageDialog(null,"Garaaz on tühi.");
@@ -29,6 +36,11 @@ public class Garaaž {
         JOptionPane.showMessageDialog(null, sb.toString());
     }
 
+    /**
+     * Valib nimkirjast auto millega tegevusi teha
+     * @param indeks on garaazi nimekirja järjekorranumber
+     * @return tagastab klassi Auto isendi
+     */
     public Auto valiAuto(int indeks) {
         if (indeks >= 1 && indeks <= autod.size()) {
             return autod.get(indeks - 1);
@@ -37,6 +49,11 @@ public class Garaaž {
         return null;
     }
 
+
+    /**
+     * Eemaldab garaazist auto
+     * @param indeks on garaazi nimekirja järjekorranumber
+     */
     public void eemaldaAuto(int indeks) {
         if (indeks >= 1 && indeks <= autod.size()) {
             Auto eemaldatud = autod.remove(indeks - 1);

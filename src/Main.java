@@ -9,7 +9,7 @@ public class Main {
 
         while (true) {
 
-            //Uldvalikud
+            //Üldvalikud
             Object[] variandid = new String[]{
                     "Lisa garaaži auto",
                     "Kuva garaažis olevad autod",
@@ -22,7 +22,7 @@ public class Main {
                     variandid, variandid[0]);
             if (valitud == null) break;
 
-            //tegevused
+            //Tegevused
             if (valitud.equals("Lisa garaaži auto")) {
                 String mark = JOptionPane.showInputDialog("Sisesta auto mark: ");
                 String mudel = JOptionPane.showInputDialog("Sisesta auto mudel: ");
@@ -63,11 +63,15 @@ public class Main {
         }
     }
 
-
+    /**
+     * Koondab autoga tehtavad valikud ja tegevused ühte staatilisse meetodi.
+     * @param auto on klassi Auto isend
+     */
     public static void tegevusedAutoga(Auto auto) {
         if (auto == null) return;
         Object[] variandid = new String[]{"Sõida", "Tangi", "Remondi", "Tagasi"};
 
+        //Valikute tsükkel
         while (true) {
             String olek = auto.isOnKatki() ? "KATKI!!!" : "Korras";//Kas autoga saab sõita, või vajab parandust
             Object valitud = JOptionPane.showInputDialog(null,
